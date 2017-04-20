@@ -65,6 +65,9 @@ x_long$value[grep("mathematics instruction", x_long$value)] <- "stem education"
 x_long$value[grep("lesson plans", x_long$value)] <- "planning_design"
 x_long$value[grep("instructional design", x_long$value)] <- "planning_design"
 x_long$value[grep("curriculum development", x_long$value)] <- "planning_design"
+x_long$value[grep("video technology", x_long$value)] <- "specific_technologies"
+x_long$value[grep("handheld devices", x_long$value)] <- "specific_technologies"
+
 #x_long$value[grep("teaching methods", x_long$value)] <- "methods"
 #x_long$value[grep("school teachers", x_long$value)] <- "elementary secondary teachers"
 #x_long$value[grep("science teachers", x_long$value)] <- "subject area teachers"
@@ -133,7 +136,7 @@ colnames(x_wide.keep)[1] <- "manuscriptID"
 
 #View(x_wide.keep)
 
-write.csv(x_wide.keep, file = "lit_review-keywords-processed.csv", row.names = FALSE)
+write.csv(x_wide.keep, file = "data/lit_review-keywords-processed.csv", row.names = FALSE)
 
 # rename NA from column name: http://stackoverflow.com/questions/38176326/replace-na-in-column-by-value-corresponding-to-column-name-in-seperate-table
 
