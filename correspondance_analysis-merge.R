@@ -12,8 +12,8 @@ output.plot <- function(plot.output, plot.resolution, file.name){
   dev.off()
 }
 
-keywords.frame <- read.csv("lit_review-keywords-processed.csv", header = TRUE)
-methods.frame <- read.csv("lit_review-data_analysis/lit_review-data_sources-survey_combined.csv", header = TRUE)
+keywords.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-keywords-processed.csv", header = TRUE)
+methods.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-data_sources-survey_combined.csv", header = TRUE)
 analysis.frame <- merge(keywords.frame, methods.frame, by.x = "manuscriptID")
 #keywords.frame[,1] <- NULL
 #x <- read_csv(file_loc, col_names = FALSE)
@@ -33,21 +33,21 @@ analysis.screeplot <- fviz_screeplot(analysis.MCA, addlabels = TRUE, barfill = "
                                      barcolor = "gray40", linecolor = "black") + theme_minimal()
 analysis.screeplot <- analysis.screeplot + labs(title = analysis.screeplot.title)
 # Output the scree plot
-output.plot(analysis.screeplot, 300, "combined-screeplot.tif")
+output.plot(analysis.screeplot, 300, "results/combined-screeplot.tif")
 
 # Create contribution to dimension 1 plot
 analysis.dim1plot <- fviz_contrib(analysis.MCA, choice = "var", axes = 1, fill = "gray40", 
                                   color = "black") + theme_minimal()
 analysis.dim1plot <- analysis.dim1plot + labs(title = analysis.dim1plot.title)
 # Output contribution to dimension 1 plot
-output.plot(analysis.dim1plot, 300, "combined-dim1.tif")
+output.plot(analysis.dim1plot, 300, "results/combined-dim1.tif")
 
 # Create contribution to dimension 2 plot
 analysis.dim2plot <- fviz_contrib(analysis.MCA, choice = "var", axes = 2, fill = "gray40", 
                                   color = "gray40") + theme_minimal()
 analysis.dim2plot <- analysis.dim2plot + labs(title = analysis.dim2plot.title)
 # Output contribution to dimension 2 plot
-output.plot(analysis.dim2plot, 300, "combined-dim2.tif")
+output.plot(analysis.dim2plot, 300, "results/combined-dim2.tif")
 
 
 # Create biplots
@@ -70,4 +70,4 @@ analysis.biplot <-
 #analysis.biplot <-
 #  analysis.biplot + labs(title = analysis.biplot.title)
 #print(analysis.biplot)
-output.plot(analysis.biplot, 900, "combined-biplot.tif")
+output.plot(analysis.biplot, 900, "results/combined-biplot.tif")
