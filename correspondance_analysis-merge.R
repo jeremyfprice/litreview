@@ -70,4 +70,4 @@ analysis.biplot <-
 #analysis.biplot <-
 #  analysis.biplot + labs(title = analysis.biplot.title)
 #print(analysis.biplot)
-output.plot(analysis.biplot, 900, "results/combined-biplot.tif")
+output.plot(analysis.biplot, 300, "results/combined-biplot.tif")

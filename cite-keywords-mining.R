@@ -23,10 +23,8 @@ plot.words <- function(filename, plot.var, plot.threshold, plot.name){
     theme_void()
 }
 
-# change this file location to suit your machine
-file_loc <- "cite-keywords.csv"
 # change TRUE to FALSE if you have no column headings in the CSV
-x <- read_csv(file_loc, col_names = FALSE)
+x <- read_csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/cite-keywords.csv", col_names = FALSE)
 
 ggplot(data=x, aes(x[,2])) + geom_histogram()
 
