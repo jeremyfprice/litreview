@@ -5,6 +5,11 @@ library(factoextra)
 library(CAinterprTools)
 #library(readr)
 
+#to do:
+  # Functionize
+  # split tpack and non-tpack using filter(df, fct %in% vc) see http://stackoverflow.com/questions/11612235/select-rows-from-a-data-frame-based-on-values-in-a-vector
+  # include all analytic functions from other file :-)
+
 # Define function for writing plots to a file
 output.plot <- function(plot.output, plot.resolution, file.name){
   tiff(file.name, width = 11, height = 8.5, units = "in", res = plot.resolution)
