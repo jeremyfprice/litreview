@@ -15,15 +15,19 @@ descriptors.t <- t.test(descriptors.frame$tep, descriptors.frame$tetp, paired = 
 descriptors.w <- wilcox.test(descriptors.frame$tep,descriptors.frame$tetp,paired=TRUE)
 
 # p value will likely be greater than 0.05, so conduct a Bayesian estimation
-descriptors.b <- BESTmcmc(descriptors.frame$tep, descriptors.frame$tetp, verbose = TRUE)
+descriptors.b <- BESTmcmc(descriptors.frame$tep, descriptors.frame$tetp)
 
 #summary(descriptors.b)
+#plotAll(descriptors.b, credMass = 0.95)
 #plot(descriptors.b)
-#plot(descriptors.b, "sd")
+#plot(descriptors.b, which = "sd")
+#plot(descriptors.b, which = "mean")
+#plot(descriptors.b, which = "effect")
+#plot(descriptors.b, which = "nu")
 #plotPostPred(descriptors.b)
 #pairs(descriptors.b)
 #head(descriptors.b$mu1)
 muDiff <- descriptors.b$mu1 - descriptors.b$mu2
-#mean(muDiff > 1.5)
-#mean(descriptors.b$sigma1 - descriptors.b$sigma2)
+muDiff.1 <- mean(muDiff > 1.5)
+sigmaDiff <- mean(descriptors.b$sigma1 - descriptors.b$sigma2)
 #hist(descriptors.b$nu)
