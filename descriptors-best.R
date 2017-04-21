@@ -1,15 +1,12 @@
 library(readr)
 library(BEST)
 
-descriptors.frame <- read_csv("data/raw_descriptions.csv", col_names = TRUE)
+descriptors.frame <- read_csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/raw_descriptions.csv", col_names = TRUE)
 
 descriptors.frame <- descriptors.frame[-1, ]
-#descriptors.frame <- descriptors.frame[,4:6]
-#descriptors.frame[2] <- NULL
 
 t.test(descriptors.frame$tep, descriptors.frame$tetp, paired = TRUE)
 
-#library(coin)
 wilcox.test(descriptors.frame$tep,descriptors.frame$tetp,paired=TRUE)
 
 BESTout <- BESTmcmc(descriptors.frame$tep, descriptors.frame$tetp, burnInSteps = 1000)
