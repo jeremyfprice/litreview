@@ -34,26 +34,40 @@ methods.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litrev
 
 
 ```{r}
+library(igraph)
+
 descriptors.pairs <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-descriptors-pairs-el.csv", header = TRUE)
 
 row.names(descriptors.pairs) <- descriptors.pairs$item1
 descriptors.pairs$item1 <- NULL
 descriptors.pairs$X <- NULL
-#descriptors.pairs.abs <- abs(descriptors.pairs)
+descriptors.pairs$reflection <- NULL
+descriptors.pairs$field.experience.programs <- NULL
 
-library(igraph)
+descriptors.pairs %>%
+  filter(n >= 2) %>%
+  graph_from_data_frame() %>%
+  ggraph(layout = "fr") +
+  geom_edge_link(aes(edge_alpha = n, edge_width = n), edge_colour = "royalblue") +
+  geom_node_point(size = 5) +
+  geom_node_text(aes(label = name), repel = TRUE,
+                 point.padding = unit(0.2, "lines")) +
+  theme_void()
+
+
 set.seed(1234)                # for reproducible example
-g  <- as.undirected(graph.adjacency(as.matrix(descriptors.pairs), weighted=TRUE))
-g <- simplify(g)
-g2 <- as.undirected(graph.adjacency(as.matrix(descriptors.cors.abs), weighted=TRUE))
-g2 <- simplify(g2)
+descriptors.graph  <- simplify(as.undirected(graph.adjacency(as.matrix(descriptors.pairs), weighted=TRUE)))
+
+  descriptors.communities <- cluster_optimal(descriptors.graph)
+  print(descriptors.communities$modularity)
+
 
 plot.igraph(g,vertex.label=V(g)$name,layout=layout.fruchterman.reingold, edge.color="black")#,edge.width=E(g)$weight)
-wc <- walktrap.community(g2)
-fc <- fastgreedy.community(g2)
+wc <- walktrap.community(g)
+fc <- fastgreedy.community(g)
 #eb <- edge.betweenness.community(g)
-V(g2)$color <- fc$membership + 1
-plot(g2)
+V(g)$color <- fc$membership + 1
+plot(g)
 ```
 
 

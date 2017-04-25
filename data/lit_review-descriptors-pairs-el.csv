@@ -1,43 +1,9 @@
-"","item1","attitudes","barriers","behavior","college faculty","college school cooperation","computer simulation","constructivism","cooperative learning","curriculum development","discussion","educational change","educational practices","elementary education","english teachers","faculty development","field experience programs","inquiry","instructional design","instructional effectiveness","intention","interdisciplinary approach","internet","knowledge","learning activities","lesson plans","literacy education","methods courses","models","program effectiveness","reflection","science teachers","secondary school teachers","self efficacy","specific_technologies","stem education","student teaching","teacher competencies","teacher education curriculum","teacher educators","teaching methods","teaching skills","thinking skills","tpack","workshops"
-"1","attitudes",NA,1,2,2,2,2,2,3,2,2,1,NA,1,3,1,NA,2,1,1,3,NA,1,5,1,2,1,3,4,3,3,NA,1,3,5,4,1,3,2,3,7,NA,NA,10,3
-"2","barriers",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,NA,1,NA,NA
-"3","behavior",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
-"4","college faculty",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,2,NA,NA,NA,NA,1
-"5","college school cooperation",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6","computer simulation",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1
-"7","constructivism",NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"8","cooperative learning",NA,1,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,1,1,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,1
-"9","curriculum development",NA,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,1,1,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,NA,1,NA,NA,NA,1,NA,NA,NA,2,NA,NA,NA,NA
-"10","discussion",NA,NA,1,NA,1,NA,1,NA,NA,NA,1,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"11","educational change",NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"12","educational practices",3,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,2,NA,NA,1,NA,1,NA,1,1,NA,NA,NA,NA,NA,1,NA,NA,NA,1,2,2,1,NA,2,NA
-"13","elementary education",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"14","english teachers",NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"15","faculty development",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
-"16","games",2,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,3,NA,NA,1,1
-"17","inquiry",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"18","instructional design",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,2,NA,NA,1,NA,1,NA,NA,1,4,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA
-"19","instructional effectiveness",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3,1,1,NA,NA
-"20","intention",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
-"21","interdisciplinary approach",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,1,1,NA,NA
-"22","internet",NA,NA,NA,1,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,1,NA,1,NA,NA,1,NA,NA
-"23","knowledge",NA,NA,1,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,1,1,NA,NA,1,1,1,NA,NA,1,NA,NA,NA,NA,2,NA,NA,1,1,NA,NA,NA,1,NA,1,2,1,NA,NA,NA
-"24","learning activities",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,1,NA,NA,NA,NA,1
-"25","lesson plans",NA,1,2,NA,NA,NA,2,NA,NA,1,NA,NA,1,NA,NA,1,1,NA,2,NA,2,NA,NA,1,NA,2,NA,NA,NA,4,NA,NA,NA,NA,NA,NA,2,NA,NA,4,2,2,NA,1
-"26","literacy education",NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"27","methods courses",NA,1,NA,1,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,1,1,NA,NA,NA,1,NA,1,NA,1,NA,2,3,NA,NA,4,1
-"28","models",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,2,2,1,NA,NA,2,NA,NA,1,NA,NA,NA,2,NA,NA,NA,1,1,NA,NA,NA,NA,NA,NA,1,NA,1,1,NA,NA,NA,1
-"29","program effectiveness",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
-"30","science teachers",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,1,1,NA,NA,NA,1,NA,2,NA,1,NA,NA,NA,1,1,NA,1,NA,NA,NA,NA,1,NA,1,1,1,NA,NA,NA
-"31","secondary school teachers",NA,NA,NA,NA,1,NA,NA,NA,NA,1,1,NA,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,2,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
-"32","self efficacy",NA,1,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,1,NA,NA,NA,NA
-"33","specific_technologies",NA,NA,NA,NA,3,NA,NA,1,NA,1,1,NA,1,2,1,NA,NA,1,NA,1,1,NA,1,NA,3,3,NA,1,NA,2,NA,1,1,NA,NA,NA,1,NA,1,4,NA,1,NA,NA
-"34","stem education",NA,2,2,NA,NA,NA,1,1,2,1,NA,NA,NA,NA,1,NA,3,NA,NA,NA,2,NA,3,NA,4,NA,NA,NA,2,3,2,1,NA,1,NA,NA,2,NA,NA,4,2,1,8,NA
-"35","student teaching",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA
-"36","teacher competencies",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,1,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,2,1,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,1,NA,NA,NA
-"37","teacher education curriculum",NA,NA,1,NA,NA,NA,NA,NA,2,NA,1,NA,NA,NA,NA,1,NA,1,NA,1,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,1,NA,NA,1,NA,NA,NA,NA,NA
-"38","teacher educators",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"39","teaching methods",NA,1,NA,NA,2,NA,1,NA,NA,1,2,NA,NA,2,1,1,2,NA,NA,NA,NA,NA,NA,2,NA,1,NA,NA,1,4,NA,2,NA,NA,NA,NA,NA,NA,NA,NA,1,1,NA,1
-"40","thinking skills",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,NA,NA,NA,NA
-"41","tpack",NA,3,1,1,1,2,2,NA,1,NA,1,NA,2,1,1,2,1,4,2,NA,3,NA,6,3,9,1,NA,6,4,4,3,2,2,3,NA,1,5,NA,3,10,3,1,NA,3
-"42","workshops",NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,2,NA,NA,NA,NA,NA,NA,2,NA,1,NA,NA,NA,NA,NA
+"","item1","instructional design","knowledge","lesson plans","models","program effectiveness","reflection","specific_technologies","stem education","teacher competencies","teaching methods","tpack"
+"1","attitudes",NA,5,NA,4,NA,NA,5,4,NA,7,10
+"2","instructional design",NA,NA,4,NA,NA,NA,NA,NA,NA,NA,NA
+"3","lesson plans",NA,NA,NA,NA,NA,4,NA,NA,NA,4,NA
+"4","methods courses",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4
+"5","specific_technologies",NA,NA,NA,NA,NA,NA,NA,NA,NA,4,NA
+"6","stem education",NA,NA,4,NA,NA,NA,NA,NA,NA,4,8
+"7","teaching methods",NA,NA,NA,NA,NA,4,NA,NA,NA,NA,NA
+"8","tpack",4,6,9,6,4,4,NA,NA,5,10,NA

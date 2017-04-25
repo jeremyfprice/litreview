@@ -90,16 +90,16 @@ descriptors.count <- descriptors.frame.long %>%
 
 # Select only the descriptors that appear 4 or more times
 # For testing purposes, try 1 to include all descriptors
-descriptors.count.sub <- subset(descriptors.count, n >= 3)
+descriptors.count.sub <- subset(descriptors.count, n >= 4)
 
 descriptors.frame.long.sub <- filter(descriptors.frame.long, value %in% descriptors.count.sub$value)
 
 # Determine descriptor pairs
 descriptors.pairs <- descriptors.frame.long.sub %>% 
   pairwise_count(value, X1, sort = TRUE, upper = FALSE)
+descriptors.pairs.sub <- subset(descriptors.pairs, n >= 4)
 
-descriptors.pairs.wide <- dcast(descriptors.pairs, formula = item1 ~ item2)
-descriptors.frame.long.keep$value <- gsub(" ", ".", descriptors.frame.long.keep$value)
+descriptors.pairs.wide <- dcast(descriptors.pairs.sub, formula = item1 ~ item2)
 #row.names(descriptors.pairs.wide) <- descriptors.pairs.wide$item1
 #descriptors.cors.wide$item1 <- NULL
 # Write table back into a csv file for further processing
