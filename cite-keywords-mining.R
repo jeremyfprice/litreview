@@ -98,6 +98,13 @@ descriptors.frame.long.sub <- filter(descriptors.frame.long, value %in% descript
 descriptors.pairs <- descriptors.frame.long.sub %>% 
   pairwise_count(value, X1, sort = TRUE, upper = FALSE)
 
+descriptors.pairs.wide <- dcast(descriptors.pairs, formula = item1 ~ item2)
+#row.names(descriptors.pairs.wide) <- descriptors.pairs.wide$item1
+#descriptors.cors.wide$item1 <- NULL
+# Write table back into a csv file for further processing
+write.csv(descriptors.cors.wide, file = "data/lit_review-descriptors-pairs-el.csv", 
+          row.names = TRUE)
+
 # Conduct correlation analysis between descriptors
 descriptors.cors <- descriptors.frame.long.sub %>% 
   group_by(value) %>%
