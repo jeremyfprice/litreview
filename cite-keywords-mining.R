@@ -99,6 +99,7 @@ descriptors.pairs <- descriptors.frame.long.sub %>%
   pairwise_count(value, X1, sort = TRUE, upper = FALSE)
 
 descriptors.pairs.wide <- dcast(descriptors.pairs, formula = item1 ~ item2)
+descriptors.frame.long.keep$value <- gsub(" ", ".", descriptors.frame.long.keep$value)
 #row.names(descriptors.pairs.wide) <- descriptors.pairs.wide$item1
 #descriptors.cors.wide$item1 <- NULL
 # Write table back into a csv file for further processing
