@@ -36,13 +36,14 @@ methods.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litrev
 ```{r}
 descriptors.pairs <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-descriptors-pairs-el.csv", header = TRUE)
 
-row.names(descriptors.pairs) <- descriptors.pairs$X
+row.names(descriptors.pairs) <- descriptors.pairs$item1
+descriptors.pairs$item1 <- NULL
 descriptors.pairs$X <- NULL
-descriptors.pairs.abs <- abs(descriptors.pairs)
+#descriptors.pairs.abs <- abs(descriptors.pairs)
 
 library(igraph)
 set.seed(1234)                # for reproducible example
-g  <- graph.adjacency(as.matrix(descriptors.cors), weighted=TRUE)
+g  <- as.undirected(graph.adjacency(as.matrix(descriptors.pairs), weighted=TRUE))
 g <- simplify(g)
 g2 <- as.undirected(graph.adjacency(as.matrix(descriptors.cors.abs), weighted=TRUE))
 g2 <- simplify(g2)
