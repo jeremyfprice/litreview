@@ -109,13 +109,9 @@ row.names(descriptors.cors.wide) <- descriptors.cors.wide$item1
 descriptors.cors.wide$item1 <- NULL
 
 # Write table back into a csv file for further processing
-write.csv(df, file = "data/lit_review-descriptors-cors-el.csv", 
+write.csv(descriptors.cors.wide, file = "data/lit_review-descriptors-cors-el.csv", 
           row.names = TRUE)
 
-library(igraph)
-set.seed(1234)                # for reproducible example
-g  <- graph.adjacency(as.matrix(descriptors.cors.wide), weighted=TRUE)
-df <- get.data.frame(g)
 
 
 
