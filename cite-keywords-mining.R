@@ -43,18 +43,24 @@ descriptors.frame.long <- subset(descriptors.frame.long, !(value %in% c("preserv
                                         "scoring rubrics", "content analysis", 
                                         "data analysis", "data collection", 
                                         "effect size", "statistical significance", 
-                                        "participant observation", "elementary secondary education")))
+                                        "participant observation", "elementary secondary education",
+                                        "elementary school teachers", "inservice teacher education")))
+
+
 
 # Combine similar descriptors
 descriptors.frame.long$value[grep("attitude", descriptors.frame.long$value)] <- "attitudes"
 descriptors.frame.long$value[grep("behavior", descriptors.frame.long$value)] <- "behavior"
 descriptors.frame.long$value[grep("games", descriptors.frame.long$value)] <- "games"
-descriptors.frame.ong$value[grep("knowledge ", descriptors.frame.long$value)] <- "knowledge"
+descriptors.frame.long$value[grep("knowledge ", descriptors.frame.long$value)] <- "knowledge"
 descriptors.frame.long$value[grep("science instruction", descriptors.frame.long$value)] <- "stem education"
 descriptors.frame.long$value[grep("mathematics instruction", descriptors.frame.long$value)] <- "stem education"
-descriptors.frame.long$value[grep("lesson plans", descriptors.frame.long$value)] <- "planning_design"
-descriptors.frame.long$value[grep("instructional design", descriptors.frame.long$value)] <- "planning_design"
-descriptors.frame.long$value[grep("curriculum development", descriptors.frame.long$value)] <- "planning_design"
+descriptors.frame.long$value[grep("discussion", descriptors.frame.long$value)] <- "discussion"
+descriptors.frame.long$value[grep("scaffolding", descriptors.frame.long$value)] <- "scaffolding"
+descriptors.frame.long$value[grep("constructivism", descriptors.frame.long$value)] <- "constructivism"
+#descriptors.frame.long$value[grep("lesson plans", descriptors.frame.long$value)] <- "planning_design"
+#descriptors.frame.long$value[grep("instructional design", descriptors.frame.long$value)] <- "planning_design"
+#descriptors.frame.long$value[grep("curriculum development", descriptors.frame.long$value)] <- "planning_design"
 descriptors.frame.long$value[grep("video technology", descriptors.frame.long$value)] <- "specific_technologies"
 descriptors.frame.long$value[grep("handheld devices", descriptors.frame.long$value)] <- "specific_technologies"
 
@@ -83,7 +89,8 @@ descriptors.count <- descriptors.frame.long %>%
   count(sort = TRUE)
 
 # Select only the descriptors that appear 4 or more times
-descriptors.count.sub <- subset(descriptors.count, n >= 4)
+# For testing purposes, try 1 to include all descriptors
+descriptors.count.sub <- subset(descriptors.count, n >= 1)
 
 descriptors.frame.long.sub <- filter(descriptors.frame.long, value %in% descriptors.count.sub$value)
 
@@ -135,13 +142,13 @@ ggplot(data=descriptors.frame, aes(descriptors.frame[,2])) + geom_histogram()
 # Graph correlation relationships
 set.seed(1234)
 descriptors.cors %>%
-  filter(correlation > .4) %>%
+  filter(correlation >= .4) %>%
   graph_from_data_frame() %>%
   ggraph(layout = "fr") +
   geom_edge_link(aes(edge_alpha = correlation, edge_width = correlation), edge_colour = "royalblue") +
   geom_node_point(size = 5) +
   geom_node_text(aes(label = name), repel = TRUE,
-                 point.padding = unit(0.2, "lines")) +
+                 point.padding = unit(0.05, "lines")) +
   theme_void()
 
 # Graph paired relationships
