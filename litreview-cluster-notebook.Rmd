@@ -34,17 +34,25 @@ methods.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litrev
 
 
 ```{r}
-descriptors.cors <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-descriptors-cors-el.csv", header = TRUE)
+descriptors.cors <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-keywords-processed.csv", header = TRUE)
+
+row.names(descriptors.cors) <- descriptors.cors$X
+descriptors.cors$X <- NULL
+descriptors.cors.abs <- abs(descriptors.cors)
 
 library(igraph)
 set.seed(1234)                # for reproducible example
-g  <- graph.adjacency(descriptors.cors, weighted=TRUE)
+g  <- graph.adjacency(as.matrix(descriptors.cors), weighted=TRUE)
 g <- simplify(g)
+g2 <- as.undirected(graph.adjacency(as.matrix(descriptors.cors.abs), weighted=TRUE))
+g2 <- simplify(g2)
 
-#plot.igraph(g,vertex.label=V(g)$name,layout=layout.fruchterman.reingold, edge.color="black")#,edge.width=E(g)$weight)
-wc <- walktrap.community(g)
+plot.igraph(g,vertex.label=V(g)$name,layout=layout.fruchterman.reingold, edge.color="black")#,edge.width=E(g)$weight)
+wc <- walktrap.community(g2)
+fc <- fastgreedy.community(g2)
 #eb <- edge.betweenness.community(g)
-
+V(g2)$color <- fc$membership + 1
+plot(g2)
 ```
 
 
