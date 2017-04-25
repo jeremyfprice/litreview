@@ -1,0 +1,205 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+#############
+# LIBRARIES #
+#############
+
+# Load libraries to analyze data
+library(FactoMineR)
+library(factoextra)
+library(CAinterprTools)
+library(dplyr)
+library(readr)
+library(ClustOfVar)
+#library(data.table)
+#library(PCAmixdata)
+library(cluster)
+library(dendextend)
+library(NbClust)
+library(BHC)
+
+##############################
+# LOAD AND PREPARE DATA SETS #
+##############################
+
+# Load in data sets from GitHub
+keywords.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-keywords-processed.csv", header = TRUE)
+methods.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-data_sources-survey_combined.csv", header = TRUE)
+
+```
+
+
+```{r}
+
+keywords.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-descriptors-cors-el.csv", header = TRUE)
+
+library(igraph)
+set.seed(1234)                # for reproducible example
+g  <- graph.adjacency(as.matrix(descriptors.cors.wide), weighted=TRUE)
+df <- get.data.frame(g)
+
+
+```
+
+
+```{r}
+
+# Combine frames and merge by the Manuscript ID
+overall.frame <- merge(keywords.frame, methods.frame, by.x = "manuscriptID")
+
+# Set row names to the Manuscript IDs
+#row.names(overall.frame) <- overall.frame$manuscriptID
+#overall.frame$manuscriptID <- NULL
+
+overall.frame <- data.frame(lapply(overall.frame, as.character), stringsAsFactors=FALSE)
+
+# Split the overall data into TPACK and non-TPACK sets for analysis
+tpack.frame <- overall.frame[overall.frame$tpack %in% "tpack",]
+tpack.frame$tpack <- NULL
+non_tpack.frame <- overall.frame[overall.frame$tpack %in% "no_tpack",]
+non_tpack.frame$tpack <- NULL
+
+#print(row.names(overall.cluster))
+
+prepare.cluster <- function(data.set){
+  for(i in 1:ncol(data.set)){
+    data.set[,i][grep("no_", data.set[,i])] <- NA
+  }
+  data.set <- data.set[,colSums(is.na(data.set))<nrow(data.set)]
+  data.set[!is.na(data.set)] <- 1
+  data.set[is.na(data.set)] <- 0
+  data.set <- data.frame(lapply(data.set, as.numeric), stringsAsFactors=FALSE)
+  data.set <- scale(data.set)
+  data.set <- t(data.set)
+  return(data.set)
+}
+
+overall.cluster <- prepare.cluster(overall.frame)
+tpack.cluster <- prepare.cluster(tpack.frame)
+non_tpack.cluster <- prepare.cluster(non_tpack.frame)
+
+```
+
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+cluster.analysis <- function(data.set) {
+  # Dissimilarity matrix
+ # d <- dist(data.set, method = "euclidean")
+  # Hierarchical clustering using Ward's method
+  #res.hc <- hclust(d, method = "ward.D2" )
+  # Plot the obtained dendrogram
+  #plot(res.hc, cex = 0.6, hang = -1)
+
+  # Compute agnes()
+  #res.agnes <- agnes(data.set, method = "ward")
+  # Agglomerative coefficient
+  #res.agnes$ac
+  
+  # Plot the tree using pltree()
+  #pltree(res.agnes, cex = 0.6, hang = -1,
+  #       main = "Dendrogram of agnes")
+  
+  # K-means clustering
+  set.seed(123)
+  km.res <- kmeans(data.set, 3, nstart = 25)
+  # k-means group number of each observation
+  km.res$cluster
+  plot(km.res)
+  set.seed(123)
+  # Compute and plot wss for k = 2 to k = 15
+  k.max <- 15 # Maximal number of clusters
+  data <- data.set
+  wss <- sapply(1:k.max, 
+                function(k){kmeans(data, k, nstart=10 )$tot.withinss})
+  plot(1:k.max, wss,
+       type="b", pch = 19, frame = FALSE, 
+       xlab="Number of clusters K",
+       ylab="Total within-clusters sum of squares")
+  abline(v = 3, lty =2)
+  
+  k.max <- 15
+  data <- data.set
+  sil <- rep(0, k.max)
+  # Compute the average silhouette width for 
+  # k = 2 to k = 15
+  #for(i in 2:k.max){
+  #  km.res <- kmeans(data, centers = i, nstart = 25)
+  #  ss <- silhouette(km.res$cluster, dist(data))
+  #  sil[i] <- mean(ss[, 3])
+  #}
+  # Plot the  average silhouette width
+  #plot(1:k.max, sil, type = "b", pch = 19, 
+  #     frame = FALSE, xlab = "Number of clusters k")
+  #cut.data <- 3
+  #abline(v = cut.data, lty = 2)
+
+  
+  # Cut tree into 10 groups
+#  grp <- cutree(res.hc, k = cut.data)
+  # Number of members in each cluster
+#  print(table(grp))
+  
+#  for(i in 1:cut.data) {
+#    print(rownames(overall.cluster)[grp == i])
+#  }
+  
+#  plot(res.hc, cex = 0.6)
+#  rect.hclust(res.hc, k = 3, border = 2:5)
+  
+  #num.cluster <- fviz_nbclust(data.set, FUNcluster = hcut, method = "silhouette", k.max = 15)
+  #print(num.cluster)
+
+  set.seed(123)
+  res.nb <- NbClust(data.set, distance = "euclidean",
+                    min.nc = 2, max.nc = 15, 
+                    method = "complete", index ="gap") 
+  print(res.nb) # print the results
+  print(fviz_nbclust(res.nb) + theme_minimal())
+  # K-means clustering
+  set.seed(123)
+  km.res <- kmeans(data.set, 3, nstart = 25)
+  # k-means group number of each observation
+  print(km.res$cluster)
+  
+  #pam.res <- pam(data.set, 7)
+  #print(pam.res$cluster)
+  #print(fviz_cluster(pam.res, stand = FALSE, geom = "point",
+  #             frame.type = "norm"))
+  
+  
+  #data.labels <- list(row.names(data.set))
+  #hc1 <- bhc(data.set, row.names(data.set), verbose=TRUE)
+  #plot(hc1, axes = FALSE)
+  #print(str(hc1))
+}
+
+cluster.analysis(non_tpack.cluster)
+#cluster.analysis(tpack.cluster)
+#cluster.analysis(overall.cluster)
+
+
+
+
+```
+
+```{r}
+library(bclust)
+cluster.obj <- bclust(non_tpack.cluster, transformed.par = c(0, -50, log(16), 0, 0, 0),
+                      labels = row.names(non_tpack.cluster))
+plot(cluster.obj)
+abline(h = cluster.obj$cut, lty = 2, col = "gray", lwd = 3)
+viplot(imp(cluster.obj)$var)
+```
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).

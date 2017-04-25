@@ -104,6 +104,23 @@ descriptors.cors <- descriptors.frame.long.sub %>%
   filter(n() >= 2) %>%
   pairwise_cor(value, X1, sort = TRUE, upper = FALSE)
 
+descriptors.cors.wide <- dcast(descriptors.cors, formula = item1 ~ item2)
+row.names(descriptors.cors.wide) <- descriptors.cors.wide$item1
+descriptors.cors.wide$item1 <- NULL
+
+# Write table back into a csv file for further processing
+write.csv(df, file = "data/lit_review-descriptors-cors-el.csv", 
+          row.names = TRUE)
+
+library(igraph)
+set.seed(1234)                # for reproducible example
+g  <- graph.adjacency(as.matrix(descriptors.cors.wide), weighted=TRUE)
+df <- get.data.frame(g)
+
+
+
+
+
 # Conduct a tf_idf analysis
 descriptors.tf_idf <- descriptors.frame.long.sub %>% 
   count(X1, value, sort = TRUE) %>%
