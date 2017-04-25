@@ -34,11 +34,11 @@ methods.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litrev
 
 
 ```{r}
-descriptors.cors <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-keywords-processed.csv", header = TRUE)
+descriptors.pairs <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-descriptors-pairs-el.csv", header = TRUE)
 
-row.names(descriptors.cors) <- descriptors.cors$X
-descriptors.cors$X <- NULL
-descriptors.cors.abs <- abs(descriptors.cors)
+row.names(descriptors.pairs) <- descriptors.pairs$X
+descriptors.pairs$X <- NULL
+descriptors.pairs.abs <- abs(descriptors.pairs)
 
 library(igraph)
 set.seed(1234)                # for reproducible example

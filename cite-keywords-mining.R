@@ -102,7 +102,7 @@ descriptors.pairs.wide <- dcast(descriptors.pairs, formula = item1 ~ item2)
 #row.names(descriptors.pairs.wide) <- descriptors.pairs.wide$item1
 #descriptors.cors.wide$item1 <- NULL
 # Write table back into a csv file for further processing
-write.csv(descriptors.cors.wide, file = "data/lit_review-descriptors-pairs-el.csv", 
+write.csv(descriptors.pairs.wide, file = "data/lit_review-descriptors-pairs-el.csv", 
           row.names = TRUE)
 
 # Conduct correlation analysis between descriptors
