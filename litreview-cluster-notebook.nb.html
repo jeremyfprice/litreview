@@ -260,6 +260,19 @@ methods.frame &lt;- read.csv(&quot;https://raw.githubusercontent.com/jeremyfpric
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGVzY3JpcHRvcnMucGFpcnMgPC0gcmVhZC5jc3YoXCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vamVyZW15ZnByaWNlL2xpdHJldmlldy9tYXN0ZXIvZGF0YS9saXRfcmV2aWV3LWRlc2NyaXB0b3JzLXBhaXJzLWVsLmNzdlwiLCBoZWFkZXIgPSBUUlVFKVxuXG5gYGAifQ== -->
+<pre class="r"><code>descriptors.pairs &lt;- read.csv(&quot;https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-descriptors-pairs-el.csv&quot;, header = TRUE)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBtZXNzYWdlOlxuSW4gaXMudW5pdCh4KSA6IHJlYWNoZWQgZWxhcHNlZCB0aW1lIGxpbWl0XG4ifQ== -->
+<pre><code>Warning message:
+In is.unit(x) : reached elapsed time limit</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm93Lm5hbWVzKGRlc2NyaXB0b3JzLnBhaXJzKSA8LSBkZXNjcmlwdG9ycy5wYWlycyRpdGVtMVxuZGVzY3JpcHRvcnMucGFpcnMkaXRlbTEgPC0gTlVMTFxuZGVzY3JpcHRvcnMucGFpcnMkWCA8LSBOVUxMXG5gYGAifQ== -->
+<pre class="r"><code>row.names(descriptors.pairs) &lt;- descriptors.pairs$item1
+descriptors.pairs$item1 &lt;- NULL
+descriptors.pairs$X &lt;- NULL</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->

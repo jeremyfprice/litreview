@@ -90,7 +90,7 @@ descriptors.count <- descriptors.frame.long %>%
 
 # Select only the descriptors that appear 4 or more times
 # For testing purposes, try 1 to include all descriptors
-descriptors.count.sub <- subset(descriptors.count, n >= 1)
+descriptors.count.sub <- subset(descriptors.count, n >= 3)
 
 descriptors.frame.long.sub <- filter(descriptors.frame.long, value %in% descriptors.count.sub$value)
 
