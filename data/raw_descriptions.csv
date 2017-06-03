@@ -1,11 +1,18 @@
-terms,abbreviations,te,tep,tet,tetp
-baseline,baseline,3613,100,199,100
-social justice OR social action,sj,122,3.38,0,0
-culturally relevant education OR multicultural education,culture,175,4.84,1,0.5
-ethnic diversity,ethnic,11,0.3,0,0
-individual differences,differences,7,0.19,0,0
-urban schools OR urban education OR urban teaching,urban,191,5.29,0,0
-social change,change,9,0.25,0,0
-place based education,place,11,0.3,0,0
-community relations OR school community relationship OR family school relationship,community,39,1.08,1,0.5
-media literacy OR multiple literacies OR popular culture,media,15,0.42,3,1.51
+terms,abbreviations,te,tet
+baseline,baseline,3613,199
+social justice OR social action,social justice,122,0
+culturally relevant education OR multicultural education,culture,175,1
+ethnic diversity,ethnicity,11,0
+individual differences,individual differences,7,0
+urban schools OR urban education OR urban teaching,urban context,191,0
+social change,social change,9,0
+place based education,place,11,0
+community relations OR school community relationship OR family school relationship,community,39,1
+media literacy OR multiple literacies OR popular culture,media and popular culture,15,3
+instructional design OR curriculum development OR lesson plans OR learning activities,instructional design,389,46
+pedagogical content knowledge,pedagogical content knowledge,385,65
+beliefs OR attitudes,beliefs/attitudes,1699,97
+surveys,surveys,847,73
+self efficacy,self-efficacy,258,25
+ethnic diversity OR diversity (faculty) OR diversity (institutional) OR student diversity,diversity,114,2
+inclusion OR equal education OR opportunities,inclusion/equity,212,6

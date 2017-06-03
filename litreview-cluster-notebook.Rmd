@@ -15,8 +15,16 @@ library(CAinterprTools)
 library(dplyr)
 library(readr)
 library(ClustOfVar)
+library(reshape2)
 #library(data.table)
 #library(PCAmixdata)
+library(widyr)
+library(tidyr)
+library(ggplot2)
+library(igraph)
+library(ggraph)
+library(tidytext)
+library(tm)
 library(cluster)
 library(dendextend)
 library(NbClust)
@@ -30,44 +38,6 @@ library(BHC)
 keywords.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-keywords-processed.csv", header = TRUE)
 methods.frame <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-data_sources-survey_combined.csv", header = TRUE)
 
-```
-
-
-```{r}
-library(igraph)
-
-descriptors.pairs <- read.csv("https://raw.githubusercontent.com/jeremyfprice/litreview/master/data/lit_review-descriptors-pairs-el.csv", header = TRUE)
-
-row.names(descriptors.pairs) <- descriptors.pairs$item1
-descriptors.pairs$item1 <- NULL
-descriptors.pairs$X <- NULL
-descriptors.pairs$reflection <- NULL
-descriptors.pairs$field.experience.programs <- NULL
-
-descriptors.pairs %>%
-  filter(n >= 2) %>%
-  graph_from_data_frame() %>%
-  ggraph(layout = "fr") +
-  geom_edge_link(aes(edge_alpha = n, edge_width = n), edge_colour = "royalblue") +
-  geom_node_point(size = 5) +
-  geom_node_text(aes(label = name), repel = TRUE,
-                 point.padding = unit(0.2, "lines")) +
-  theme_void()
-
-
-set.seed(1234)                # for reproducible example
-descriptors.graph  <- simplify(as.undirected(graph.adjacency(as.matrix(descriptors.pairs), weighted=TRUE)))
-
-  descriptors.communities <- cluster_optimal(descriptors.graph)
-  print(descriptors.communities$modularity)
-
-
-plot.igraph(g,vertex.label=V(g)$name,layout=layout.fruchterman.reingold, edge.color="black")#,edge.width=E(g)$weight)
-wc <- walktrap.community(g)
-fc <- fastgreedy.community(g)
-#eb <- edge.betweenness.community(g)
-V(g)$color <- fc$membership + 1
-plot(g)
 ```
 
 
@@ -103,10 +73,164 @@ prepare.cluster <- function(data.set){
   return(data.set)
 }
 
-overall.cluster <- prepare.cluster(overall.frame)
-tpack.cluster <- prepare.cluster(tpack.frame)
-non_tpack.cluster <- prepare.cluster(non_tpack.frame)
+# Convert dataframe from wide to long format (necessary for working with the data)
+overall.frame.long <- melt(overall.frame, id.vars = c("manuscriptID"))
 
+# Remove any empty cells
+overall.frame.long <- na.omit(overall.frame.long)
+
+# Convert all data to lower case for easier manipulation
+overall.frame.long$value <- tolower(overall.frame.long$value)
+
+# Define and remove stopwords, which will not be used in the analysis.
+# These words 
+overall.frame.long <- subset(overall.frame.long, !(value %in% c("preservice teachers", "technology integration", 
+                                        "computer uses in education", 
+                                        "preservice teacher education", 
+                                        "technology uses in education", "teacher education", 
+                                        "educational technology", "teacher education programs", 
+                                        "mixed methods research", "interviews", 
+                                        "qualitative research", "information technology", 
+                                        "correlation", "statistical analysis", 
+                                        "comparative analysis", "online surveys", 
+                                        "focus groups", "semi structured interviews", 
+                                        "likert scales", "predictor variables", 
+                                        "teacher surveys", "surveys", "observation", 
+                                        "questionnaires", "student surveys", 
+                                        "regression (statistics)", "case studies", 
+                                        "pretests posttests", "technological literacy", 
+                                        "technology education", "coding", "scores", 
+                                        "scoring rubrics", "content analysis", 
+                                        "data analysis", "data collection", 
+                                        "effect size", "statistical significance", 
+                                        "participant observation", "elementary secondary education",
+                                        "elementary school teachers", "inservice teacher education")))
+
+
+
+# Combine similar descriptors
+overall.frame.long$value[grep("attitude", overall.frame.long$value)] <- "attitudes"
+overall.frame.long$value[grep("behavior", overall.frame.long$value)] <- "behavior"
+overall.frame.long$value[grep("games", overall.frame.long$value)] <- "games"
+overall.frame.long$value[grep("knowledge ", overall.frame.long$value)] <- "knowledge"
+overall.frame.long$value[grep("science instruction", overall.frame.long$value)] <- "stem education"
+overall.frame.long$value[grep("mathematics instruction", overall.frame.long$value)] <- "stem education"
+overall.frame.long$value[grep("discussion", overall.frame.long$value)] <- "discussion"
+overall.frame.long$value[grep("scaffolding", overall.frame.long$value)] <- "scaffolding"
+overall.frame.long$value[grep("constructivism", overall.frame.long$value)] <- "constructivism"
+#overall.frame.long$value[grep("lesson plans", overall.frame.long$value)] <- "planning_design"
+#overall.frame.long$value[grep("instructional design", overall.frame.long$value)] <- "planning_design"
+#overall.frame.long$value[grep("curriculum development", overall.frame.long$value)] <- "planning_design"
+#overall.frame.long$value[grep("video technology", overall.frame.long$value)] <- "specific technologies"
+#overall.frame.long$value[grep("handheld devices", overall.frame.long$value)] <- "specific technologies"
+
+# Rename "pedagogical content knowledge" to "tpack"
+overall.frame.long$value[grep("pedagogical content knowledge", overall.frame.long$value)] <- "tpack"
+
+# Rejected changes
+#x_long$value[grep("teaching methods", x_long$value)] <- "methods"
+#x_long$value[grep("school teachers", x_long$value)] <- "elementary secondary teachers"
+#x_long$value[grep("science teachers", x_long$value)] <- "subject area teachers"
+#x_long$value[grep("english teachers", x_long$value)] <- "subject area teachers"
+#x_long$value[grep("mathematics teachers", x_long$value)] <- "subject area teachers"
+
+# Look for duplications and remove them
+overall.frame.long <- overall.frame.long[ , !(names(overall.frame.long) %in% c("X2","variable"))]
+overall.frame.long <- overall.frame.long[!duplicated(overall.frame.long), ]
+
+  for(i in 1:ncol(overall.frame.long)){
+    overall.frame.long[,i][grep("no_", overall.frame.long[,i])] <- NA
+  }
+
+#overall.cluster <- prepare.cluster(overall.frame)
+#tpack.cluster <- prepare.cluster(tpack.frame)
+#non_tpack.cluster <- prepare.cluster(non_tpack.frame)
+
+# Conduct a count of descriptors
+overall.count <- overall.frame.long %>% 
+  group_by(value) %>% 
+  count(sort = TRUE)
+
+# Select only the descriptors that appear 4 or more times
+# For testing purposes, try 1 to include all descriptors
+overall.count.sub <- subset(overall.count, n >= 4)
+
+overall.frame.long.sub <- filter(overall.frame.long, value %in% overall.count.sub$value)
+
+
+
+
+# Determine descriptor pairs
+#overall.frame.long.complete <- overall.frame.long[complete.cases(overall.frame.long),]
+overall.pairs <- overall.frame.long %>% 
+  pairwise_count(value, manuscriptID, sort = TRUE, upper = TRUE)
+overall.pairs.sub <- subset(overall.pairs, n >= 4)
+
+descriptors.sub.list <- as.list(unique(overall.pairs.sub$item1))
+
+methods.list <- as.list(colnames(methods.frame))
+
+keep.list <- (append(descriptors.sub.list, methods.list))
+
+#test.frame <- subset(overall.pairs, overall.pairs[1] %in% keep.list)# | overall.pairs[2] %in% keep.list)
+
+test.frame <- na.omit(overall.pairs[overall.pairs[1, ] %in% keep.list, ]) && 
+  na.omit(overall.pairs[overall.pairs[2, ] %in% keep.list, ])
+test.frame <- subset(overall.pairs, item1 %in% keep.list & item2 %in% keep.list)
+test.frame <- test.frame[complete.cases(test.frame), ]
+test.frame <- test.frame[!duplicated(test.frame), ]
+
+
+```
+
+```{r, eval=FALSE, include=FALSE}
+#overall.pairs[is.na(overall.pairs)] <- 0
+
+colnames(overall.frame.long)[2] <- "item1"
+
+test1.el <- merge(overall.pairs.el, overall.frame.long, by = "item1")
+
+colnames(overall.frame.long)[2] <- "item2"
+colnames(test1.el)[3] <- "manuscript1"
+
+test2.el <- merge(overall.pairs.el, overall.frame.long, by = "item2")
+
+colnames(overall.frame.long)[2] <- "value"
+colnames(test2.el)[3] <- "manuscript2"
+
+test.el <- merge(test1.el, test2.el, by = c("item1", "item2"))
+test.el$items <- paste(test.el$item1, test.el$item2)
+test.el <- test.el[!duplicated(test.el), ]
+```
+
+```{r}
+overall.pairs.el <- overall.pairs[,1:2]
+overall.pairs.el <- overall.pairs.el[!duplicated(overall.pairs), ]
+
+overall.graph <- graph_from_incidence_matrix(overall.pairs, directed = FALSE,
+                                                 add.names = NULL)#, weighted = FALSE)
+
+descriptors.pairs.sub <- descriptors.pairs.sub[,1:2]
+
+overall.graph.el <- simplify(graph_from_edgelist(as.matrix(overall.pairs.el),
+                                            directed = FALSE))
+
+
+set.seed(1234)                # for reproducible example
+
+  overall.communities <- cluster_optimal(overall.graph.el, weights = overall.pairs$n)
+  print(overall.communities$modularity)
+
+
+plot.igraph(overall.graph.el,vertex.label=V(overall.graph.el)$name,
+            layout=layout.fruchterman.reingold,edge.color="black")#,
+            #edge.width=E(descriptors.graph)$weight)
+
+wc <- walktrap.community(overall.graph.el)
+fc <- fastgreedy.community(overall.graph.el)
+eb <- edge.betweenness.community(overall.graph.el)
+V(overall.graph.el)$color <- wc$membership + 1
+plot(overall.graph.el)
 ```
 
 

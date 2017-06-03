@@ -1,9 +1,12 @@
-"","item1","instructional design","knowledge","lesson plans","models","program effectiveness","reflection","specific_technologies","stem education","teacher competencies","teaching methods","tpack"
-"1","attitudes",NA,5,NA,4,NA,NA,5,4,NA,7,10
-"2","instructional design",NA,NA,4,NA,NA,NA,NA,NA,NA,NA,NA
-"3","lesson plans",NA,NA,NA,NA,NA,4,NA,NA,NA,4,NA
-"4","methods courses",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4
-"5","specific_technologies",NA,NA,NA,NA,NA,NA,NA,NA,NA,4,NA
-"6","stem education",NA,NA,4,NA,NA,NA,NA,NA,NA,4,8
-"7","teaching methods",NA,NA,NA,NA,NA,4,NA,NA,NA,NA,NA
-"8","tpack",4,6,9,6,4,4,NA,NA,5,10,NA
+"","attitudes","barriers","college school cooperation","cooperative learning","english teachers","inquiry","instructional design","intention","interdisciplinary approach","knowledge","learning activities","lesson plans","literacy education","methods courses","models","program effectiveness","reflection","science teachers","self efficacy","specific technologies","stem education","teacher competencies","teacher educators","teaching methods","teaching skills","tpack","workshops"
+"attitudes",NA,NA,NA,3,3,NA,NA,3,NA,5,NA,NA,NA,3,4,3,3,NA,3,5,4,3,3,7,NA,10,3
+"educational practices",3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"games",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3,NA,NA,NA
+"instructional design",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"instructional effectiveness",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3,NA,NA,NA
+"lesson plans",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,NA,NA,NA,NA,NA,NA,4,NA,NA,NA
+"methods courses",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3,NA,4,NA
+"specific technologies",NA,NA,3,NA,NA,NA,NA,NA,NA,NA,NA,3,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,NA,NA,NA
+"stem education",NA,NA,NA,NA,NA,3,NA,NA,NA,3,NA,4,NA,NA,NA,NA,3,NA,NA,NA,NA,NA,NA,4,NA,8,NA
+"teaching methods",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"tpack",NA,3,NA,NA,NA,NA,4,NA,3,6,3,9,NA,NA,6,4,4,3,NA,3,NA,5,3,10,3,NA,3

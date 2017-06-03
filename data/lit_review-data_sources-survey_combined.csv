@@ -23,7 +23,6 @@ TOURNAKI2014,survey,no_artifact,no_interview,no_observation,no_curriculum_review
 WAKEWHIT2013,survey,no_artifact,no_interview,no_observation,no_curriculum_review
 WILLIS2015,survey,no_artifact,no_interview,no_observation,no_curriculum_review
 BAKIR2015,no_survey,no_artifact,interview,observation,curriculum_review
-HARMON2014,no_survey,no_artifact,interview,observation,curriculum_review
 ORTEGA2013,no_survey,no_artifact,interview,no_observation,no_curriculum_review
 BELLMAEN2013,no_survey,artifact,interview,observation,no_curriculum_review
 BESCHORN2016,no_survey,artifact,interview,observation,no_curriculum_review
@@ -36,8 +35,6 @@ BURKEFOU2014,no_survey,no_artifact,interview,no_observation,no_curriculum_review
 FOULGARB2015,no_survey,no_artifact,interview,no_observation,no_curriculum_review
 WETZELBU2014,no_survey,no_artifact,interview,no_observation,no_curriculum_review
 BUSSWETZ2015,survey,no_artifact,interview,no_observation,no_curriculum_review
-HERRINGT2013,survey,no_artifact,interview,no_observation,no_curriculum_review
-KINGLANC2013,survey,no_artifact,interview,no_observation,no_curriculum_review
 MOURLAMM2015,survey,no_artifact,interview,observation,no_curriculum_review
 SADAFNEW2015,survey,no_artifact,interview,no_observation,no_curriculum_review
 COLLIERF2013,survey,artifact,no_interview,no_observation,no_curriculum_review
