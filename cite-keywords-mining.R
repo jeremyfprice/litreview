@@ -5,7 +5,7 @@
 #######################
 
 
-#library(readr)
+library(readr)
 library(reshape2)
 library(widyr)
 library(tidyr)
@@ -19,10 +19,10 @@ library(FactoMineR)
 library(factoextra)
 library(CAinterprTools)
 library(extrafont)
-library(linkcomm)
-library(AnthroTools)
-library(ggalluvial)
-library(WeightedCluster)
+#library(linkcomm)
+#library(AnthroTools)
+#library(ggalluvial)
+#library(WeightedCluster)
 library(treemap)
 
 
@@ -74,7 +74,6 @@ prepare.long <- function(data.set){
                                               "elementary school teachers", "inservice teacher education",
                                               "secondary school teachers", "english teachers", "workshops")))
   
-  data.set <- subset(data.set, data.set$variable %in% overall.count$value)
   
   
   # Combine similar descriptors into broader categories
@@ -436,9 +435,9 @@ do.cluster <- function(data.set, data.title) {
 #  }
 #}
 
-for(i in 1:ncol(data.set.matrix)) {
-  data.set.matrix[,i] <- as.integer(data.set.matrix[,i])
-}
+#for(i in 1:ncol(data.set.matrix)) {
+#  data.set.matrix[,i] <- as.integer(data.set.matrix[,i])
+#}
 
 do.MCA <- function(data.set, data.title){
   ### What is going on here?
@@ -525,6 +524,11 @@ focus.list <- focus.list[!focus.list$manuscriptID %in% c("TAI2015", "PARKYANG201
 
 # Combine frames and merge by the Manuscript ID
 overall.frame <- merge(descriptors.frame, methods.frame, by.x = "manuscriptID")
+
+# Article citations
+article.el = as.data.frame(read_csv("~/Box Sync/lit_review/article_citation-el-reduced.csv", col_names = FALSE))
+article.el <- article.el[!article.el %in% c("TAI2015", "PARKYANG2013", "KOPCHADI2016", "BROWNALF2013"), ]
+article.el <- as.matrix(article.el)
 
 # Set global minimum cut value
 cut.min <<- 0
@@ -630,7 +634,10 @@ stem.long <- prepare.long(stem.frame)
 no_stem.long <- prepare.long(no_stem.frame)
 
 descriptors.long <- prepare.long(descriptors.frame)
+descriptors.long <- subset(descriptors.long, variable %in% overall.count$value)
+
 methods.long <- prepare.long(methods.frame)
+methods.long <- subset(methods.long, variable %in% overall.count$value)
 
 ######################
 #                    #
@@ -644,18 +651,40 @@ methods.long <- prepare.long(methods.frame)
 ############################
 
 do.cluster(overall.long, "all")
-do.cluster(overall.reduced.long, "reduced")
-do.cluster(tpack.long, "TPACK")
-do.cluster(no_tpack.long, "non-TPACK")
-do.cluster(attitude.long, "attitude")
-do.cluster(no_attitude.long, "non-attitude")
-do.cluster(survey.long, "survey")
-do.cluster(no_survey.long, "non-survey")
-do.cluster(stem.long, "stem")
-do.cluster(no_stem.long, "non-stem")
+#do.cluster(overall.reduced.long, "reduced")
+#do.cluster(tpack.long, "TPACK")
+#do.cluster(no_tpack.long, "non-TPACK")
+#do.cluster(attitude.long, "attitude")
+#do.cluster(no_attitude.long, "non-attitude")
+#do.cluster(survey.long, "survey")
+#do.cluster(no_survey.long, "non-survey")
+#do.cluster(stem.long, "stem")
+#do.cluster(no_stem.long, "non-stem")
 
 do.cluster(descriptors.long, "descriptors")
 do.cluster(methods.long, "methods")
+
+article.graph <- simplify(graph_from_edgelist(article.el, directed = FALSE),
+                          remove.loops = TRUE, remove.multiple = FALSE)
+set.seed(seed.value)
+article.community <- cluster_louvain(article.graph)
+article.modularity <- modularity(article.community)
+article.clusters <- data.frame(manuscriptID = toupper(article.community$names),
+                             tribe = article.community$membership,
+                             mod = article.modularity)
+rownames(article.clusters) <- NULL
+
+trial1 <- article.clusters[1:2]
+trial2 <- article.clusters[1:2]
+cites.el <- merge(trial1, trial2, by = "tribe")
+cites.el$tribe <- NULL
+cites.el$modularity <- article.modularity
+
+new.row <- data.frame(trial = "citations", noClusters = length(article.clusters), 
+                      modularity = article.modularity)
+trial.table <<- rbind(trial.table, new.row)
+
+community.el <<- rbind(community.el, cites.el)
 
 useable.el <- data.frame(x = community.el$manuscriptID.x, y = community.el$manuscriptID.y)
 useable.el <- as.matrix(useable.el)
